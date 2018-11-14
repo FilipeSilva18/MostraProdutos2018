@@ -1,12 +1,19 @@
 package tecnologica.produtos.mostra.iftm.culturaba.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Entity
 public class Evento implements Parcelable {
+    @NonNull
+    @PrimaryKey (autoGenerate = true)
+    private Integer idEvento;
     private String nome;
     private String descricao;
     private String dataInicio;
@@ -16,6 +23,19 @@ public class Evento implements Parcelable {
     private String tipo;
     private String imagem;
     private String endereco;
+
+    @NonNull
+    public Integer getIdEvento() {
+        return idEvento;
+    }
+
+    public void setIdEvento(@NonNull Integer idEvento) {
+        this.idEvento = idEvento;
+    }
+
+    public static Creator getCREATOR() {
+        return CREATOR;
+    }
 
     public Evento(String nome, String descricao, String dataInicio, String dataFim, String horaInicio, String horaFim, String tipo, String endereco, String imagem) {
         this.nome = nome;
@@ -141,5 +161,21 @@ public class Evento implements Parcelable {
         dest.writeString(tipo);
         dest.writeString(imagem);
         dest.writeString(endereco);
+    }
+
+    @Override
+    public String toString() {
+        return "Evento{" +
+                "idEvento=" + idEvento +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", dataInicio='" + dataInicio + '\'' +
+                ", dataFim='" + dataFim + '\'' +
+                ", horaInicio='" + horaInicio + '\'' +
+                ", horaFim='" + horaFim + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", imagem='" + imagem + '\'' +
+                ", endereco='" + endereco + '\'' +
+                '}';
     }
 }

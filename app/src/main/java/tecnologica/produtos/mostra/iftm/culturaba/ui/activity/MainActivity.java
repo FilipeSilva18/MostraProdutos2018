@@ -18,6 +18,9 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -32,7 +35,8 @@ public class MainActivity extends AppCompatActivity
     ListView lista;
     List<Evento> eventos;
     AdapterEvento adapter;
-    byte[] aux;
+    private FirebaseAuth mAuth;
+    FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +45,13 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         lista = findViewById(R.id.list_eventos);
-
-
-        Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(),
-                R.drawable.information);
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        aux = stream.toByteArray();
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         eventos = new ArrayList<>();
-        eventos.add(new Evento("Filipe", "Teste","25/10/2018", "26/10/2018", "12:00", "14:00", "DANCA", "Rua dos laaaaaaairios", "https://i.ytimg.com/vi/zL5nyXPjJjU/maxresdefault.jpg"));
-        eventos.add(new Evento("Filipe", "Teste","25/10/2018", "26/10/2018", "12:00", "14:00", "DANCA", "Rua dos lirdasdasios", "http://2.bp.blogspot.com/-z9-2nuEr4yA/VNuzF_4e-0I/AAAAAAAABA8/FCAXel8PVjI/s1600/7%C2%BA%2BSIMAE.jpg"));
-        eventos.add(new Evento("Filipe", "Teste","25/10/2018", "26/10/2018", "12:00", "14:00", "DANCA", "Rua dos lirwwwwwwios", "http://2.bp.blogspot.com/-z9-2nuEr4yA/VNuzF_4e-0I/AAAAAAAABA8/FCAXel8PVjI/s1600/7%C2%BA%2BSIMAE.jpg"));
+        eventos.add(new Evento("Filipe", "Teste", "25/10/2018", "26/10/2018", "12:00", "14:00", "DANCA", "Rua dos laaaaaaairios", "https://i.ytimg.com/vi/zL5nyXPjJjU/maxresdefault.jpg"));
+        eventos.add(new Evento("Filipe", "Teste", "25/10/2018", "26/10/2018", "12:00", "14:00", "DANCA", "Rua dos lirdasdasios", "http://2.bp.blogspot.com/-z9-2nuEr4yA/VNuzF_4e-0I/AAAAAAAABA8/FCAXel8PVjI/s1600/7%C2%BA%2BSIMAE.jpg"));
+        eventos.add(new Evento("Filipe", "Teste", "25/10/2018", "26/10/2018", "12:00", "14:00", "DANCA", "Rua dos lirwwwwwwios", "http://2.bp.blogspot.com/-z9-2nuEr4yA/VNuzF_4e-0I/AAAAAAAABA8/FCAXel8PVjI/s1600/7%C2%BA%2BSIMAE.jpg"));
         adapter = new AdapterEvento(eventos, this);
         lista.setAdapter(adapter);
 
@@ -135,8 +134,10 @@ public class MainActivity extends AppCompatActivity
             System.out.println("Perfil");
         } else if (id == R.id.nav_manage) {
             System.out.println("Sobre");
-        }else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_logout) {
             System.out.println("Logout");
+            mAuth.signOut();
+            startActivity(new Intent(this, LoginActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "712910679715",
+    "firebase_url": "https://webintelecto.firebaseio.com",
+    "project_id": "webintelecto",
+    "storage_bucket": "webintelecto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712910679715:android:fe664eb3f96c586a",
+        "android_client_info": {
+          "package_name": "tecnologica.produtos.mostra.iftm.culturaba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "712910679715-fs3jj4b4v7ju39kn0udfk4andar65h92.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tecnologica.produtos.mostra.iftm.culturaba",
+            "certificate_hash": "6d4f2d81fe56487ad30202a40b118f1a8e2b13bd"
+          }
+        },
+        {
+          "client_id": "712910679715-8dkhfdfe62vg9dg6fn0b0cqlaeas207i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq-AeSITMxPbuSg-B0x6XHwoyFIMZjuts"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "712910679715-8dkhfdfe62vg9dg6fn0b0cqlaeas207i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

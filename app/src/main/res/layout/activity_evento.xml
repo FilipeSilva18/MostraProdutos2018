@@ -2,33 +2,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_Evento"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_margin="6dp"
+    android:orientation="vertical"
     tools:context=".ui.activity.EventoActivity">
 
     <ImageView
         android:id="@+id/img_evento_selecionado"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:src="@drawable/information"/>
+        android:src="@drawable/information" />
 
-    <TextView
-        android:id="@+id/tv_titulo_evento_selecionado"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Titulo do evento"
-        android:textAlignment="center"
-        android:layout_margin="10dp"
-        android:textSize="26dp" />
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/tv_titulo_evento_selecionado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Titulo do evento"
+            android:layout_centerInParent="true"
+            android:textSize="26dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@android:drawable/ic_menu_save" />
+
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/tv_data_evento_selecionado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
         android:layout_margin="5dp"
+        android:gravity="start"
         android:text="Data do evento"
         android:textSize="16dp" />
 
@@ -44,6 +59,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/tv_descricao_evento_selecionado"
             android:layout_width="match_parent"
@@ -53,8 +69,6 @@
             android:text="descricaoaaaaa"
             android:textSize="16dp" />
     </ScrollView>
-
-
 
 
 </LinearLayout>
