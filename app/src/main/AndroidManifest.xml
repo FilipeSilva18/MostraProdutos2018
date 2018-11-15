@@ -26,7 +26,7 @@
         </activity>
         <activity android:name=".ui.activity.GaleriaEventosActivity" />
         <activity android:name=".ui.activity.CadastroEventoActivity" />
-        <activity android:name=".SobreActivity"></activity>
+        <activity android:name=".ui.activity.SobreActivity"></activity>
     </application>
 
 </manifest>

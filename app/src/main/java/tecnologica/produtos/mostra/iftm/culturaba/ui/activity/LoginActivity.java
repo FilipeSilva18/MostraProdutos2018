@@ -40,21 +40,29 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login(View view) {
         loading.setVisibility(View.VISIBLE);
-        mAuth.signInWithEmailAndPassword(email.getText().toString(), senha.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            loading.setVisibility(View.GONE);
-                            Snackbar snackbar = Snackbar
-                                    .make(linearLayout, "Falha ao fazer login, tente novamente! :(", Snackbar.LENGTH_LONG);
-                            snackbar.show();
+        if (!email.getText().toString().equals("") && !senha.getText().toString().equals("") ) {
+
+
+            mAuth.signInWithEmailAndPassword(email.getText().toString(), senha.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                updateUI(user);
+                            } else {
+                                loading.setVisibility(View.GONE);
+                                Snackbar snackbar = Snackbar
+                                        .make(linearLayout, "Falha ao fazer login, tente novamente! :(", Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                            }
                         }
-                    }
-                });
+                    });
+        }else {
+            Snackbar snackbar = Snackbar
+                    .make(linearLayout, "E-mail e/ou senha inválidos! :(", Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
     }
 
     public void createAccount(View view) {

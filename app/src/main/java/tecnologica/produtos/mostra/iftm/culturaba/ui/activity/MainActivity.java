@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
         currentUser = mAuth.getCurrentUser();
         btn = findViewById(R.id.btn_cadastrar_evento);
 
-        if (currentUser.getEmail().equals("filipesilva1505@gmail.com"))
+        if (currentUser.getEmail().equals("joao_junior_14@hotmail.com"))
             btn.setVisibility(View.VISIBLE);
         else
             btn.setVisibility(View.GONE);
@@ -83,9 +83,6 @@ public class MainActivity extends AppCompatActivity
 
 
         eventos = new ArrayList<>();
-        eventos.add(new Evento("Filipe", "Teste", "25/10/2018", "26/10/2018", "12:00", "14:00", "DANCA", "Rua dos laaaaaaairios", "https://i.ytimg.com/vi/zL5nyXPjJjU/maxresdefault.jpg"));
-        eventos.add(new Evento("Filipe", "Teste", "25/10/2018", "26/10/2018", "12:00", "14:00", "DANCA", "Rua dos lirdasdasios", "http://2.bp.blogspot.com/-z9-2nuEr4yA/VNuzF_4e-0I/AAAAAAAABA8/FCAXel8PVjI/s1600/7%C2%BA%2BSIMAE.jpg"));
-        eventos.add(new Evento("Filipe", "Teste", "25/10/2018", "26/10/2018", "12:00", "14:00", "DANCA", "Rua dos lirwwwwwwios", "http://2.bp.blogspot.com/-z9-2nuEr4yA/VNuzF_4e-0I/AAAAAAAABA8/FCAXel8PVjI/s1600/7%C2%BA%2BSIMAE.jpg"));
         adapter = new AdapterEvento(eventos, this);
         lista.setAdapter(adapter);
 
@@ -167,7 +164,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
             System.out.println("Perfil");
         } else if (id == R.id.nav_manage) {
-            System.out.println("Sobre");
+            startActivity(new Intent(this, SobreActivity.class));
         } else if (id == R.id.nav_logout) {
             mAuth.signOut();
             startActivity(new Intent(this, LoginActivity.class));

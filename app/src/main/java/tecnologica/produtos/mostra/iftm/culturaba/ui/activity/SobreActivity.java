@@ -1,7 +1,9 @@
-package tecnologica.produtos.mostra.iftm.culturaba;
+package tecnologica.produtos.mostra.iftm.culturaba.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import tecnologica.produtos.mostra.iftm.culturaba.R;
 
 public class SobreActivity extends AppCompatActivity {
 
