@@ -20,8 +20,8 @@ public interface DaoAccess {
     @Insert
     void insertEventos(ArrayList<Evento> eventoList);
 
-    @Query("SELECT * FROM Evento WHERE idEvento =:id")
-    Evento findEventoById(String id);
+    @Query("SELECT * FROM Evento WHERE imagem =:imagem")
+    Evento findEventoById(String imagem);
 
     @Query("SELECT * FROM Evento")
     List<Evento> findAll();
@@ -29,8 +29,8 @@ public interface DaoAccess {
     @Query("SELECT * FROM Evento WHERE tipo LIKE :tipoEvento")
     List<Evento> findEventoByTipo(String tipoEvento);
 
-    @Query("DELETE FROM Evento WHERE idEvento = :idEvento")
-    void deleteByID(String idEvento);
+    @Query("DELETE FROM Evento WHERE endereco = :imagem")
+    void deleteByID(String imagem);
 
     @Update
     void updateEvento(Evento evento);

@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.activity.GaleriaEventosActivity">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Eventos Salvos"/>
+        android:text="Eventos Salvos"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+<LinearLayout
+    android:id="@+id/view_empyt_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone"
+    android:gravity="center">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="SEM EVENTOS CADASTRADOS"/>
+</LinearLayout>
     <ListView
-        android:id="@+id/list_eventos"
+        android:id="@+id/list_eventos_salvos"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </ListView>
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

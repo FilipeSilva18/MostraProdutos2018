@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "712910679715-4mn5ilj8q7rmiklho2qieafn6qcnq6ha.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tecnologica.produtos.mostra.iftm.culturaba",
+            "certificate_hash": "20b718248d8bb2950d1d19d6c0c0fa6895164146"
+          }
+        },
+        {
           "client_id": "712910679715-8dkhfdfe62vg9dg6fn0b0cqlaeas207i.apps.googleusercontent.com",
           "client_type": 3
         }

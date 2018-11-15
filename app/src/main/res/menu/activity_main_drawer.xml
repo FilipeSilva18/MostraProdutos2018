@@ -20,10 +20,13 @@
             android:id="@+id/nav_manage"
             android:icon="@drawable/information"
             android:title="Sobre" />
+
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/logout"
             android:title="Logout" />
+
+
     </group>
 
 

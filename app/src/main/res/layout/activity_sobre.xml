@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".SobreActivity">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Culturaba"
+            android:textAlignment="center"
+            android:textSize="45dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Tipos de evento" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <ImageView
+                android:id="@+id/img_danca"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/dance" />
+
+            <TextView
+                android:id="@+id/tv_danca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@+id/img_danca"
+                android:text="DANÇA"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_danca"
+                android:layout_margin="5dp"
+                android:layout_toRightOf="@+id/img_danca"
+                android:text="Dentro ou fora do palco! O improtante é dançar!!! Festivais, competições, apresentações, ou até mesmo um forró! Tudo isso está na categoria DANÇA" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <ImageView
+                android:id="@+id/img_teatro"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/masks" />
+
+            <TextView
+                android:id="@+id/tv_teatro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@+id/img_teatro"
+                android:text="TEATRO"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_teatro"
+                android:layout_margin="5dp"
+                android:layout_toRightOf="@+id/img_teatro"
+                android:text="Qualquer peça de teatro!!! Independente do gênero, seja: auto, comédia, drama, fantoche, ópera, musical, revista, tragédia, tragicomédia! O que importa é prestigiar a arte." />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

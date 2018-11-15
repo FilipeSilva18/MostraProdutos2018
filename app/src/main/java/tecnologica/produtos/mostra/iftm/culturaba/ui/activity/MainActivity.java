@@ -1,13 +1,10 @@
 package tecnologica.produtos.mostra.iftm.culturaba.ui.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,14 +12,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.io.ByteArrayOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,10 +35,19 @@ import tecnologica.produtos.mostra.iftm.culturaba.ui.adapter.AdapterEvento;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ListView lista;
-    List<Evento> eventos;
+    public static List<Evento> eventos;
     AdapterEvento adapter;
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
+    Button btn;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter = new AdapterEvento(eventos, this);
+        lista.setAdapter(adapter);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +58,29 @@ public class MainActivity extends AppCompatActivity
         lista = findViewById(R.id.list_eventos);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+        btn = findViewById(R.id.btn_cadastrar_evento);
+
+        if (currentUser.getEmail().equals("filipesilva1505@gmail.com"))
+            btn.setVisibility(View.VISIBLE);
+        else
+            btn.setVisibility(View.GONE);
+
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the UI
+                Evento post = dataSnapshot.getValue(Evento.class);
+                System.out.println("KRAUSEREEER" + post.getNome());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                System.out.println("eeerrrp");                // ...
+            }
+        };
+
 
         eventos = new ArrayList<>();
         eventos.add(new Evento("Filipe", "Teste", "25/10/2018", "26/10/2018", "12:00", "14:00", "DANCA", "Rua dos laaaaaaairios", "https://i.ytimg.com/vi/zL5nyXPjJjU/maxresdefault.jpg"));
@@ -60,10 +94,9 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Seu codigo aqui
-                System.out.println(adapter.getItem(position).getEndereco());
                 Intent it = new Intent(view.getContext(), EventoActivity.class);
                 it.putExtra("evento", adapter.getItem(position));
+                it.putExtra("salvar", "salvar");
                 startActivity(it);
 
             }
@@ -86,6 +119,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
 
     @Override
     public void onBackPressed() {
@@ -129,13 +163,12 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
             System.out.println("INICIO");
         } else if (id == R.id.nav_gallery) {
-            System.out.println("meus eventos");
+            startActivity(new Intent(this, GaleriaEventosActivity.class));
         } else if (id == R.id.nav_slideshow) {
             System.out.println("Perfil");
         } else if (id == R.id.nav_manage) {
             System.out.println("Sobre");
         } else if (id == R.id.nav_logout) {
-            System.out.println("Logout");
             mAuth.signOut();
             startActivity(new Intent(this, LoginActivity.class));
         }
@@ -143,5 +176,9 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void cadastrarEvento(View view) {
+        startActivity(new Intent(this, CadastroEventoActivity.class));
     }
 }

@@ -14,12 +14,12 @@ import java.util.List;
 import tecnologica.produtos.mostra.iftm.culturaba.R;
 import tecnologica.produtos.mostra.iftm.culturaba.model.Evento;
 
-public class AdapterEvento extends BaseAdapter {
+public class AdapterEventoSalvo extends BaseAdapter {
 
     private final List<Evento> eventos;
     private final Activity act;
 
-    public AdapterEvento(List<Evento> eventos, Activity act) {
+    public AdapterEventoSalvo(List<Evento> eventos, Activity act) {
         this.eventos = eventos;
         this.act = act;
     }
@@ -50,13 +50,13 @@ public class AdapterEvento extends BaseAdapter {
         TextView horarioEvento = view.findViewById(R.id.tv_horario);
 
         Picasso.get()
-                .load(eventos.get(position).getImagem())
+                .load(eventos.get(position).getEndereco())
                 .resize(300, 300)
                 .centerCrop()
                 .into(imagem);
 
         tituloEvento.setText(eventos.get(position).getNome());
-        localEvento.setText(eventos.get(position).getEndereco());
+        localEvento.setText(eventos.get(position).getImagem()   );
         horarioEvento.setText(eventos.get(position).getHoraInicio());
 
 

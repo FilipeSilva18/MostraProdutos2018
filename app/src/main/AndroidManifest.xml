@@ -15,7 +15,7 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.activity.EventoActivity" />
         <activity android:name=".ui.activity.LoginActivity">
             <intent-filter>
@@ -24,7 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.GaleriaEventosActivity"></activity>
+        <activity android:name=".ui.activity.GaleriaEventosActivity" />
+        <activity android:name=".ui.activity.CadastroEventoActivity" />
+        <activity android:name=".SobreActivity"></activity>
     </application>
 
 </manifest>

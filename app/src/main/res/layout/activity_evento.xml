@@ -24,8 +24,8 @@
             android:id="@+id/tv_titulo_evento_selecionado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Titulo do evento"
             android:layout_centerInParent="true"
+            android:text="Titulo do evento"
             android:textSize="26dp" />
 
         <android.support.design.widget.FloatingActionButton
@@ -33,7 +33,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:visibility="gone"
             app:srcCompat="@android:drawable/ic_menu_save" />
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            app:srcCompat="@android:drawable/ic_menu_delete" />
 
 
     </RelativeLayout>
