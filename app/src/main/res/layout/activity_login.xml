@@ -17,7 +17,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="Insira seu e-mail"
-        android:text="filipesilva1505@gmail.com"
         android:inputType="textEmailAddress"
         android:textAlignment="center" />
 
@@ -28,7 +27,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="Insira sua senha"
-        android:text="123456"
         android:inputType="textPassword"
         android:textAlignment="center" />
     <ProgressBar

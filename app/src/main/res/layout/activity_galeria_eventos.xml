@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".ui.activity.GaleriaEventosActivity">
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,18 +15,21 @@
         android:textAlignment="center"
         android:textSize="25dp"
         android:textStyle="bold" />
-<LinearLayout
-    android:id="@+id/view_empyt_list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:visibility="gone"
-    android:gravity="center">
-    <TextView
+
+    <LinearLayout
+        android:id="@+id/view_empyt_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="SEM EVENTOS CADASTRADOS"/>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SEM EVENTOS CADASTRADOS"
+            android:textAlignment="center" />
+    </LinearLayout>
+
     <ListView
         android:id="@+id/list_eventos_salvos"
         android:layout_width="match_parent"

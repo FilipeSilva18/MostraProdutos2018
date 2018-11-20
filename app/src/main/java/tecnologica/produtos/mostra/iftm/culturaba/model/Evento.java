@@ -37,6 +37,7 @@ public class Evento implements Parcelable {
         return CREATOR;
     }
 
+
     public Evento(String nome, String descricao, String dataInicio, String dataFim, String horaInicio, String horaFim, String tipo, String endereco, String imagem) {
         this.nome = nome;
         this.descricao = descricao;

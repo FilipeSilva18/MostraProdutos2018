@@ -1,7 +1,10 @@
 package tecnologica.produtos.mostra.iftm.culturaba.ui.activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -15,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,19 +37,43 @@ import tecnologica.produtos.mostra.iftm.culturaba.model.Evento;
 import tecnologica.produtos.mostra.iftm.culturaba.ui.adapter.AdapterEvento;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-    ListView lista;
+        implements NavigationView.OnNavigationItemSelectedListener, OnEventoListenner {
+    private ListView lista;
     public static List<Evento> eventos;
-    AdapterEvento adapter;
+    private AdapterEvento adapter;
     private FirebaseAuth mAuth;
-    FirebaseUser currentUser;
-    Button btn;
+    private FirebaseUser currentUser;
+    private Button btn;
+    private DatabaseReference myRef;
+    private OnEventoListenner onEventoListenner;
+
 
     @Override
     public void onResume() {
         super.onResume();
-        adapter = new AdapterEvento(eventos, this);
-        lista.setAdapter(adapter);
+
+        myRef.child("evento").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                eventos = new ArrayList<>();
+                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
+                    System.out.println("DEU CERTO");
+                    Evento e = new Evento(noteDataSnapshot.child("nome").getValue(String.class), noteDataSnapshot.child("descricao").getValue(String.class), noteDataSnapshot.child("dataInicio").getValue(String.class),
+                            noteDataSnapshot.child("dataFim").getValue(String.class), noteDataSnapshot.child("horaInicio").getValue(String.class), noteDataSnapshot.child("horaFim").getValue(String.class),
+                            noteDataSnapshot.child("tipo").getValue(String.class), noteDataSnapshot.child("endereco").getValue(String.class), noteDataSnapshot.child("imagem").getValue(String.class));
+                    eventos.add(e);
+
+                }
+                onEventoListenner.onEventoListener();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 
@@ -59,6 +87,9 @@ public class MainActivity extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         btn = findViewById(R.id.btn_cadastrar_evento);
+        onEventoListenner = this;
+        myRef = FirebaseDatabase.getInstance().getReference();
+        eventos = new ArrayList<>();
 
         if (currentUser.getEmail().equals("joao_junior_14@hotmail.com"))
             btn.setVisibility(View.VISIBLE);
@@ -66,25 +97,27 @@ public class MainActivity extends AppCompatActivity
             btn.setVisibility(View.GONE);
 
 
-        ValueEventListener postListener = new ValueEventListener() {
+        myRef.child("evento").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
-                Evento post = dataSnapshot.getValue(Evento.class);
-                System.out.println("KRAUSEREEER" + post.getNome());
+                eventos = new ArrayList<>();
+                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
+                    System.out.println("DEU CERTO");
+                    Evento e = new Evento(noteDataSnapshot.child("nome").getValue(String.class), noteDataSnapshot.child("descricao").getValue(String.class), noteDataSnapshot.child("dataInicio").getValue(String.class),
+                            noteDataSnapshot.child("dataFim").getValue(String.class), noteDataSnapshot.child("horaInicio").getValue(String.class), noteDataSnapshot.child("horaFim").getValue(String.class),
+                            noteDataSnapshot.child("tipo").getValue(String.class), noteDataSnapshot.child("endereco").getValue(String.class), noteDataSnapshot.child("imagem").getValue(String.class));
+                    eventos.add(e);
+
+                }
+                onEventoListenner.onEventoListener();
+
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                System.out.println("eeerrrp");                // ...
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
-        };
-
-
-        eventos = new ArrayList<>();
-        adapter = new AdapterEvento(eventos, this);
-        lista.setAdapter(adapter);
+        });
 
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -178,4 +211,17 @@ public class MainActivity extends AppCompatActivity
     public void cadastrarEvento(View view) {
         startActivity(new Intent(this, CadastroEventoActivity.class));
     }
+
+    @Override
+    public void onEventoListener() {
+        adapter = new AdapterEvento(eventos, this);
+        lista.setAdapter(adapter);
+
+    }
+
+
+}
+
+interface OnEventoListenner {
+    void onEventoListener();
 }

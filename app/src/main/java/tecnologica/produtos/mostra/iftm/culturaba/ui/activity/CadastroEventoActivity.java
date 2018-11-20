@@ -1,12 +1,24 @@
 package tecnologica.produtos.mostra.iftm.culturaba.ui.activity;
 
+import android.content.DialogInterface;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import tecnologica.produtos.mostra.iftm.culturaba.R;
 import tecnologica.produtos.mostra.iftm.culturaba.model.Evento;
@@ -40,7 +52,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
         dataFim = findViewById(R.id.tv_data_final_evento);
         imagem = findViewById(R.id.tv_url_evento);
         endereco = findViewById(R.id.tv_local_evento);
-        myRef =  FirebaseDatabase.getInstance().getReference();
+        myRef = FirebaseDatabase.getInstance().getReference();
 
     }
 
@@ -48,6 +60,20 @@ public class CadastroEventoActivity extends AppCompatActivity {
         evento = new Evento(nome.getText().toString(), descricao.getText().toString(), dataIni.getText().toString(), dataFim.getText().toString(),
                 horaIni.getText().toString(), horaFim.getText().toString(), tipo.getText().toString(), endereco.getText().toString(), imagem.getText().toString());
         myRef.child("evento").push().setValue(evento);
-        MainActivity.eventos.add(evento);
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Evento cadastrado com Sucesso!!! ");
+        // alert.setMessage("Message");
+
+        alert.setPositiveButton("Home", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                finish();
+            }
+        });
+
+
+        alert.show();
+
+
     }
 }
